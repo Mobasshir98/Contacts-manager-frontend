@@ -1,0 +1,74 @@
+@import "@fontsource/titillium-web";
+
+.delete__body {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(66, 64, 64, 0.38);
+  z-index: 2;
+  .delete__container {
+    position: absolute;
+    width: 345px;
+    height: 318px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 10px;
+    .delete__label {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .delete__success {
+        position: absolute;
+        top: 43px;
+      }
+      .vector {
+        position: absolute;
+        top: 50px;
+      }
+      h4 {
+        font-family: "Titillium Web";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 37px;
+      }
+      p {
+        position: absolute;
+        top: 180px;
+        font-family: "Titillium Web";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 27px;
+        text-align: center;
+        color: #2da5fc;
+        opacity: 0.8;
+      }
+    }
+  }
+}
+.deletebtn{
+    position: absolute;
+    top:250px;
+}
+.delete-btn{
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: #ffffff;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: larger;
+    line-height: 36.5px;
+    transition: 0.3s ease-in;
+}
+.delete-btn:hover{
+    background-color: #2DA5FC;
+}

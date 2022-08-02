@@ -1,0 +1,17 @@
+.box-logout p {
+    text-decoration: none;
+    position: absolute;
+    cursor: pointer;
+    bottom: 2%;
+    left:4%;
+    z-index: 2;
+  }
+  .box-logout img {
+    text-decoration: none;
+    position: absolute;
+    width: 15px;
+    height: 12px;
+    bottom: 4.3%;
+    left:3%;
+    z-index: 2;
+  }
