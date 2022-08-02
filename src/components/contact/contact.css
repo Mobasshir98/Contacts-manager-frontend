@@ -98,12 +98,14 @@
   /* border: 1px solid gray; */
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .contact-table {
-  width: 100%;
+  width: 85vw;
   /* border: 1px solid black; */
-  height: 100%;
+  height: fit-content;
+  box-sizing: border-box;
   margin: auto;
 
 }
@@ -120,7 +122,7 @@
   min-width: 100%;
   max-width: 100%;
   /* min-height: 100%; */
-  max-height: 100%;
+  max-height: fit-content;
   border-collapse: collapse;
   font-family: 'Titillium Web';
 }
@@ -147,7 +149,7 @@
 }
 
 .rwd-table td {
-  display: block;
+  display: inline-block;
 }
 
 .rwd-table td:first-child {
