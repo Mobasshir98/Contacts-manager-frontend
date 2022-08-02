@@ -39,7 +39,7 @@ const Contact = () => {
   const [searchemail, setsearchemail] = useState("");
   const [username, setusername] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
-  const contactsPerPage = 7;
+  const contactsPerPage = 6;
   const PagesVisited = pageNumber * contactsPerPage;
   const pageCount =
     ContactState.length > 0
