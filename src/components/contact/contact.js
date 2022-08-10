@@ -39,11 +39,22 @@ const Contact = () => {
   const [searchemail, setsearchemail] = useState("");
   const [username, setusername] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
-  const contactsPerPage = 5;
+
+  
+  let contactsPerPage = 8;
+  
   const PagesVisited = pageNumber * contactsPerPage;
+  let tempstate = ContactState.filter((d) => {
+    const searchTerm = searchemail.toLowerCase();
+    const email = d.email.toLowerCase();
+    if (searchemail === "") {
+      return d;
+    }
+    return searchTerm && email.includes(searchTerm);
+  })
   const pageCount =
-    ContactState.length > 0
-      ? Math.ceil(ContactState.length / contactsPerPage)
+    tempstate.length > 0
+      ? Math.ceil(tempstate.length / contactsPerPage)
       : 0;
 
   useEffect(() => {
@@ -137,6 +148,10 @@ const Contact = () => {
       setContactState(tempuser);
     }
   };
+  useEffect(() => {
+    setPageNumber(0)
+  }, [searchemail])
+  
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
@@ -183,7 +198,7 @@ const Contact = () => {
           </div>
           <div className="nav-bar">
             <div className="nav-bar1 section-btn-main">
-              <button style={{ marginLeft: 20 }}>
+              <button style={{ marginLeft: 70 }}>
                 <FaRegCalendarAlt /> &nbsp; Select Date
               </button>
             </div>
@@ -210,9 +225,9 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <div className="contact-table">
-            <table className="rwd-table">
-              <tbody>
+          <div className="container-table">
+            <table className="fl-table">
+              <thead>
                 <tr>
                   <th>
                     <input
@@ -227,39 +242,27 @@ const Contact = () => {
                     />
                   </th>
                   <th scope="col"> Name</th>
-                  <th scope="col" className="v1">
-                    Designation
-                  </th>
-                  <th scope="col" className="v1">
-                    Company
-                  </th>
-                  <th scope="col" className="v1">
-                    Industry
-                  </th>
-                  <th scope="col" className="v1">
-                    Email
-                  </th>
-                  <th scope="col" className="v1">
-                    Phone Number
-                  </th>
-                  <th scope="col" className="v1">
-                    Country
-                  </th>
-                  <th scope="col" className="v1">
-                    Action
-                  </th>
+                  <th scope="col">Designation</th>
+                  <th scope="col">Company</th>
+                  <th scope="col">Industry</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Phone Number</th>
+                  <th scope="col">Country</th>
+                  <th scope="col">Action</th>
                 </tr>
-                {ContactState.length > 0 &&
-                  ContactState.filter((d) => {
-                    const searchTerm = searchemail.toLowerCase();
-                    const email = d.email.toLowerCase();
-                    if (searchemail === "") {
-                      return d;
-                    }
-                    return searchTerm && email.includes(searchTerm);
-                  })
-                    .slice(PagesVisited, PagesVisited + contactsPerPage)
-                    .map((d, i) => (
+              </thead>
+              {ContactState.length > 0 &&
+                ContactState.filter((d) => {
+                  const searchTerm = searchemail.toLowerCase();
+                  const email = d.email.toLowerCase();
+                  if (searchemail === "") {
+                    return d;
+                  }
+                  return searchTerm && email.includes(searchTerm);
+                })
+                  .slice(PagesVisited, PagesVisited + contactsPerPage)
+                  .map((d, i) => (
+                    <tbody key={i}>
                       <tr key={i}>
                         <th scope="row">
                           <input
@@ -294,8 +297,8 @@ const Contact = () => {
                           />
                         </td>
                       </tr>
-                    ))}
-              </tbody>
+                    </tbody>
+                  ))}
             </table>
           </div>
           <ReactPaginate
@@ -308,6 +311,7 @@ const Contact = () => {
             nextLinkClassName={"nextbtn"}
             disabledClassName={"paginationdisabled"}
             activeClassName={"paginationactive"}
+            forcePage={pageNumber}
           />
         </div>
       </div>
