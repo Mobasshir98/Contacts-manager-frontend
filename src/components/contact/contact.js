@@ -16,6 +16,7 @@ import {
   FaAngleDoubleDown,
   FaAngleDoubleUp,
   FaPen,
+  FaSort
 } from "react-icons/fa";
 import Search from "../search/Search";
 import ReactPaginate from "react-paginate";
@@ -39,12 +40,12 @@ const Contact = () => {
   const [searchemail, setsearchemail] = useState("");
   const [username, setusername] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
-
+  const [order,setorder]=useState("ASC")
   
-  let contactsPerPage = 8;
+  let contactsPerPage = 5;
   
   const PagesVisited = pageNumber * contactsPerPage;
-  let tempstate = ContactState.filter((d) => {
+  let tempstate = ContactState.length>0&&ContactState.filter((d) => {
     const searchTerm = searchemail.toLowerCase();
     const email = d.email.toLowerCase();
     if (searchemail === "") {
@@ -156,6 +157,19 @@ const Contact = () => {
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
+  const sorting =(col)=>{ 
+    if(order==="ASC"){
+      const sorted = [...ContactState].sort((a,b)=>a[col].toLowerCase()>b[col].toLowerCase()?1:-1)
+      setContactState(sorted)
+      setorder("DSC")
+    }
+    if(order==="DSC"){
+      const sorted = [...ContactState].sort((a,b)=>a[col].toLowerCase()<b[col].toLowerCase()?1:-1)
+      setContactState(sorted)
+      setorder("ASC")
+    }
+
+  }
 
   return (
     <>
@@ -242,9 +256,9 @@ const Contact = () => {
                     />
                   </th>
                   <th scope="col"> Name</th>
-                  <th scope="col">Designation</th>
-                  <th scope="col">Company</th>
-                  <th scope="col">Industry</th>
+                  <th style={{cursor:'pointer'}} onClick={()=>sorting("designation")} scope="col">Designation <FaSort/> </th>
+                  <th style={{cursor:'pointer'}} onClick={()=>sorting("company")} scope="col">Company <FaSort/> </th>
+                  <th style={{cursor:'pointer'}} onClick={()=>sorting("industry")} scope="col">Industry <FaSort/> </th>
                   <th scope="col">Email</th>
                   <th scope="col">Phone Number</th>
                   <th scope="col">Country</th>
