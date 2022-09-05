@@ -8,6 +8,7 @@ import axios from "axios";
 import Logout from "../logout/logout";
 import noimage from "../../assets/no-image.png";
 import Delete from "../delete/delete";
+import Dropdown from './Dropdown';
 import {
   FaTh,
   FaBook,
@@ -41,6 +42,7 @@ const Contact = () => {
   const [username, setusername] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
   const [order,setorder]=useState("ASC")
+  const [selectval,setselectval]=useState("All")
   
   let contactsPerPage = 5;
   
@@ -53,9 +55,15 @@ const Contact = () => {
     }
     return searchTerm && email.includes(searchTerm);
   })
+  let filterstate = tempstate.length>0&&tempstate.filter((d)=>{
+    if(selectval==="All"){
+      return d
+    }
+    return selectval===d.country
+  })
   const pageCount =
-    tempstate.length > 0
-      ? Math.ceil(tempstate.length / contactsPerPage)
+    filterstate.length > 0
+      ? Math.ceil(filterstate.length / contactsPerPage)
       : 0;
 
   useEffect(() => {
@@ -261,7 +269,7 @@ const Contact = () => {
                   <th style={{cursor:'pointer'}} onClick={()=>sorting("industry")} scope="col">Industry <FaSort/> </th>
                   <th scope="col">Email</th>
                   <th scope="col">Phone Number</th>
-                  <th scope="col">Country</th>
+                  <th scope="col"> <Dropdown data={ContactState} setselectval={setselectval}   /> </th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -273,6 +281,11 @@ const Contact = () => {
                     return d;
                   }
                   return searchTerm && email.includes(searchTerm);
+                }).filter((d)=>{
+                  if(selectval==="All"){
+                    return d
+                  }
+                  return selectval===d.country
                 })
                   .slice(PagesVisited, PagesVisited + contactsPerPage)
                   .map((d, i) => (
