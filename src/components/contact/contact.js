@@ -9,6 +9,7 @@ import Logout from "../logout/logout";
 import noimage from "../../assets/no-image.png";
 import Delete from "../delete/delete";
 import Dropdown from './Dropdown';
+import { Typography,Paper } from '@mui/material'
 import {
   FaTh,
   FaBook,
@@ -205,6 +206,13 @@ const Contact = () => {
             <FaBook />
             &nbsp; Total Contacts
           </button>
+          <Paper>
+            <Typography variant='h6' align='center' >
+              CSV file should contain header in this format: <br />
+              name	designation	company	industry	email	phonenumber	country
+
+            </Typography>
+          </Paper>
         </aside>
         <div className="content-main">
           <div className="header-div">

@@ -5,7 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 
 export default function NativeSelect1({data,setselectval}) {
-    const set = [...new Set(data.map((d)=>{
+    const set = [...new Set(data&&data.map((d)=>{
         return d.country
         }))]
     const handleChange=(e)=>{
@@ -26,7 +26,7 @@ export default function NativeSelect1({data,setselectval}) {
           onChange={handleChange}
         >
             <option value={"All"}>All</option>
-          {set.map((d,v)=>{
+          {set?.map((d,v)=>{
           return <option  key={v }value={d}>{d}</option>
           })}
         </NativeSelect>
