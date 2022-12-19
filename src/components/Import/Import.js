@@ -21,7 +21,7 @@ export default function Import({ setimporting }) {
       data.append("file", file);
       axios({
         method: "POST",
-        url: "https://handlecontacts-backend.herokuapp.com/post",
+        url: `${process.env.REACT_APP_SERVER_URL}/post`,
         data: data,
         headers: {
           authorization: token,

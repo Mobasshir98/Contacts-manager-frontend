@@ -9,7 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
   const handleLogin = () => {
     axios({
-      url: "https://handlecontacts-backend.herokuapp.com/login",
+      url: `${process.env.REACT_APP_SERVER_URL}/login`,
       method: "POST",
       headers: {},
       data: { mailid: loginState.mailid, password: loginState.password },

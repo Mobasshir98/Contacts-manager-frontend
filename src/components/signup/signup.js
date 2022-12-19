@@ -10,7 +10,7 @@ const Signup = () => {
   const handleUserAdd = () => {
     if (signupState.password === signupState.cpassword) {
       axios({
-        url: "https://handlecontacts-backend.herokuapp.com/signup",
+        url: `${process.env.REACT_APP_SERVER_URL}/signup`,
         method: "POST",
         headers: {},
         data: { mailid: signupState.mailid, password: signupState.password },
